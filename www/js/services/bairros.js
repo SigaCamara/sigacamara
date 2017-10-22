@@ -1,11 +1,11 @@
 moduleServices.factory('Bairros', function($http, $q, DB, Util, URL) {
-  
+
     return {
       all: function() {
         // return promise with bairros data
         var promise = $http.get(URL.endpoint("bairros")).then(function (response) {
           var myFollowedBairros = DB.load("bairros_follow");
-         
+
           // flag nos bairros que estou seguindo
           for(var i in response.data){
 
@@ -14,14 +14,14 @@ moduleServices.factory('Bairros', function($http, $q, DB, Util, URL) {
               id: response.data[i],
               nome:  response.data[i]
             }
-            
+
             var bairro = response.data[i];
             bairro.follow = (Util.getIndexOfItem(bairro, myFollowedBairros) !== false);
           }
-          
+
           return response.data;
         });
-  
+
         // Return the promise to the controller
         return promise;
       },
@@ -41,7 +41,7 @@ moduleServices.factory('Bairros', function($http, $q, DB, Util, URL) {
         if(!myFollowedBairros){
           myFollowedBairros = [];
         }
-  
+
         if(Util.getIndexOfItem(bairro, myFollowedBairros) === false){
           myFollowedBairros.push(bairro);
           DB.save('bairros_follow', myFollowedBairros);
@@ -55,7 +55,7 @@ moduleServices.factory('Bairros', function($http, $q, DB, Util, URL) {
         if(indice !== false){
           myFollowedBairros.splice(indice, 1);
         }
-       
+
         DB.save('bairros_follow', myFollowedBairros);
       },
       get: function(bairroId) {

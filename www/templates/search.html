@@ -1,16 +1,17 @@
-<ion-view view-title="Search">
+<ion-view view-title="Siga Câmara">
   <ion-content>
     <p>Pesquisar Acões dos Vereadores</p>
-    
+
     <ul class="list">
       <li class="item" ng-click="vm.redirect('app.bairros')">
-          Bairros <span ng-show="vm.bairro.id">({{vm.bairro.nome}})</span> 
+         <ion-icon ios="ios-people" md="md-people"></ion-icon>
+          Bairros <span ng-show="vm.bairro.id">({{vm.bairro.nome}})</span>
       </li>
       <li class="item" ng-click="vm.redirect('app.vereadores')">
         Vereadores <span ng-show="vm.vereador.id">({{vm.vereador.nome_parlamentar}})</span>
       </li>
       <li class="item" ng-click="vm.redirect('app.assuntos')">
-        Assuntos <span ng-show="vm.assunto.id">({{vm.assunto.descricao}})</span> 
+        Assuntos <span ng-show="vm.assunto.id">({{vm.assunto.descricao}})</span>
       </li>
     </ul>
   </ion-content>

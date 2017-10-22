@@ -1,7 +1,7 @@
 
 {
-  "name": "My Ionic App",
-  "short_name": "My Ionic App",
+  "name": "Siga Câmara",
+  "short_name": "Siga Câmara",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
