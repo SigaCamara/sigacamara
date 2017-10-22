@@ -99,7 +99,7 @@ angular.module('starter.controllers', [])
   var vm = this;
   this.listaItens = [];
 
-  this.bairro = Filtros.getFilter("bairro");
+  this.bairro = Filtros.getFilter("bairro_item");
   this.vereador = Filtros.getFilter("vereador");
   this.assunto = Filtros.getFilter("assunto");
 
@@ -152,7 +152,7 @@ angular.module('starter.controllers', [])
   var vm = this;
 
   this.updateFiltros = function(){
-    vm.bairro = Filtros.getFilter("bairro");
+    vm.bairro = Filtros.getFilter("bairro_item");
     vm.vereador = Filtros.getFilter("vereador");
     vm.assunto = Filtros.getFilter("assunto");
   }
