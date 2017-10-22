@@ -1,7 +1,13 @@
 <ion-view view-title="Vereadores">
   <ion-content>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Qual o vereador?" ng-model="search" on-change="vm.searchResults(this.value)">
+      </label>
+    </div>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in vm.listaItens" ng-click="vm.select(item)">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in vm.listaItens | filter: search" ng-click="vm.select(item)">
         <img ng-src="{{item.url_foto}}">
         <h2>{{item.nome_parlamentar}}</h2>
         <p>{{item.biografia}}</p>
