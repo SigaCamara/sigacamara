@@ -8,7 +8,7 @@ moduleServices.factory('Vereadores', function($http, $q, DB, Util, URL, MockHelp
         var myFollowedVereadores = DB.load("vereador_follow");
 
         // flag nos vereadores que estou seguindo
-        for(var i in response.data){
+        for (var i in response.data) {
           var vereador = response.data[i];
           vereador.follow = (Util.getIndexOfItem(vereador, myFollowedVereadores) !== false);
 
