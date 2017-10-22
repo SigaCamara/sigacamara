@@ -13,7 +13,7 @@
             </div>
             <div class="item item-text-wrap">
               <div ng-hide="vm.rankeTipoMateria">
-                  Consultando bairros com atuação
+                  Consultando materias por tipo
               </div>
               <ul ng-show="vm.rankeTipoMateria">
                   <li ng-repeat="item in vm.rankeTipoMateria track by $index" ng-if="item.qtd>0 && ( $index < 3 || vm.showTipoAll === true)">
