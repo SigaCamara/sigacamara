@@ -60,8 +60,7 @@ angular.module('starter.controllers', [])
 
 .controller('MaterialDetailCtrl', function($scope, $state, Materiais, $rootScope, $ionicHistory, DB, $timeout, $ionicNavBarDelegate, Filtros,  $ionicLoading, $stateParams) {
   var vm = this;
-  this.material = {"id":326492,"tipo_materia_id":9,"numero":3541,"ano":2017,"ementa":"SOLICITA PROVIDÊNCIAS DA SANASA PARA AUMENTAR OS \"CAVALETES COLETIVOS\", VISANDO AMPLIAÇÃO DO NÚMERO DE AGRUPADORES/REAGRUPAMENTO DA DISTRIBUIÇÃO DE ÁGUA NA RUA MANOEL THOMAZ, VILA LUNARDI (PORTELINHA).","indexacao":"","autores_parlamentares":[{"id":316,"nome_parlamentar":"Nelson Hossri","url_foto":"http://sagl.campinas.sp.leg.br/sapl_documentos/parlamentar/fotos/316_foto_parlamentar","biografia":"\u003cdiv id=\"form-widgets-biografia\" class=\"richTextWidget richtext-field\"\u003e\u003cp\u003eNatural\n de Campinas, Nelson Hossri é formado em Direito pela Universidade de \nRibeirão Preto (Unaerp) e obteve ainda título de especialista em \nDependência Química pela Unifesp. Possui formação em\u0026nbsp;vários cursos na \nárea de Políticas Públicas de Prevenção às Drogas.\u0026nbsp;Antes de ser eleito \nvereador, Hossri sempre participou ativamente dos movimentos sociais e \nentidades do município, tendo inclusive criado o Movimento “Sou Feliz \nsem Drogas”, com apadrinhamento de Padre Haroldo, onde inúmeras famílias\n foram atendidas e vidas foram salvas.\u003c/p\u003e\n\u003cp\u003eDe 2012 a 2016, Hossri esteve à frente da Coordenadoria de Prevenção \nàs Drogas de Campinas, onde idealizou e coordenou inúmeras ações que se \ntornaram referência, como o Programa Recomeço (tratamento gratuito para \ndependentes do álcool e outras drogas), Pet Terapia (uso do cachorro no \ntratamento), a campanha “Não dê esmola, dê cidadania” (conscientização \njunto à população acerca dos prejuízos da atitude de dar esmola para as \npessoas em situação de rua), a Bolsas de Cursos gratuitos e a \nCoordenadoria Itinerante (atendimento em todas as regiões da cidade) e o\n Grupo de Amparo às Famílias, entre outras.\u003c/p\u003e\n\u003cp\u003eHossri se candidatou a vereador pela primeira vez em 2012 e ficou \ncomo primeiro suplente. Em 2016 se elegeu vereador com 4.335 votos.\u003c/p\u003e\u003c/div\u003e","partido_atual":"PODE","links":[{"rel":"self","uri":"/parlamentares/316"}]}],"ind_tramitacao":1,"regime_tramitacao":"Ordinária","links":[{"rel":"self","uri":"/materias/326492"}],"tipo":{"data":{"id":9,"sigla":"IND","descricao":"Indicação"}}};
-  
+  this.material = Filtros.getFilter("materia");
 })
 
 .controller('MateriaisCtrl', function($scope, $state, Materiais, $rootScope, $ionicHistory, DB, $timeout, $ionicNavBarDelegate, Filtros,  $ionicLoading) {
@@ -87,8 +86,9 @@ angular.module('starter.controllers', [])
 
   this.filterDescription = Filtros.getFilterDescription();
 
-  this.select = function(valor){
-
+  this.select = function(materia){
+    Filtros.setFilter("materia", materia);
+    $state.go("app.materia-detail");
   }
 })
 

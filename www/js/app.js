@@ -42,11 +42,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-  .state('app.material', {
-    url: '/material/:id',
+  .state('app.materia-detail', {
+    url: '/materia-detail',
     views: {
       'menuContent': {
-        templateUrl: 'templates/material-detail.html',
+        templateUrl: 'templates/materia-detail.html',
         controller: 'MaterialDetailCtrl',
         controllerAs: 'vm'
       }

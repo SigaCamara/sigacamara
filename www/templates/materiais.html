@@ -1,4 +1,4 @@
-<ion-view view-title="Materiais">
+<ion-view view-title="Materias">
   <ion-content>
     <div class="padding"  ng-bind-html="vm.filterDescription"></div>
       <ion-list>
@@ -8,6 +8,10 @@
           <i class="icon ion-chevron-right icon-accessory"></i>
         </ion-item>
       </ion-list>
+
+      <div class="row" ng-show="vm.listaItens.length <= 0 && !vm.loading">
+        Nenhum registro encontrado para os filtros selecionados.
+      </div>
 
       <div class="row padding" ng-show="vm.loading">
         <ion-spinner></ion-spinner> <span>Buscando registros...</span>

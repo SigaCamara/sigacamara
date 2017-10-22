@@ -1,4 +1,4 @@
-<ion-view view-title="Detalhes Material">
+<ion-view view-title="Detalhes Materia">
   <ion-content>
     <div class="list list-inset">
         <div class="item">
@@ -11,13 +11,19 @@
           <strong>Número:</strong> {{vm.material.numero}}
         </div>
         <div class="item">
+            <strong>Em tramitação:</strong> {{vm.material.ind_tramitacao === 1 ? "Sim" : "Não"}}
+        </div>
+        <div class="item">
+            <strong>Regime de tramitação:</strong> {{vm.material.regime_tramitacao}}
+          </div>
+        <div class="item">
           <strong>Ementa:</strong> {{vm.material.ementa}}
         </div>
         <div class="item">
             <strong>Indexacao:</strong> {{vm.material.indexacao}}
         </div>
         <button class="button button-block button-positive">
-            Seguir Material
+            Seguir Materia
          </button>
     </div>
 
