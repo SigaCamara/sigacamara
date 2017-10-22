@@ -1,1 +1,10 @@
 /* Empty. Add your own CSS if you like */
+
+.button-rouded{
+  width: 55px;
+  border-radius: 50%;
+  background: #db4437;
+  color: #FFF;
+  line-height: 30px;
+  box-shadow: 0px 2px 5px #666;
+}

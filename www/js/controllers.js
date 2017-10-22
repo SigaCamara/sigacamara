@@ -41,6 +41,56 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('VereadorCtrl', function($scope, Vereadores, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
+  var vm = this;
+  this.listaItens = [];
+  
+  Vereadores.all().then(function(data) {
+    vm.listaItens = data;
+  });
+
+  this.select = function(valor){
+    Filtros.setFilter("vereador", valor);
+    Filtros.getFilter("scope"). updateFiltros();
+    $ionicNavBarDelegate.back();
+  }
+})
+
+.controller('BairroCtrl', function($scope, Bairros, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
+  var vm = this;
+  this.listaItens = [];
+  
+  Bairros.all().then(function(data) {
+    vm.listaItens = data;
+  });
+
+  this.select = function(valor){
+    Filtros.setFilter("bairro", valor);
+    Filtros.getFilter("scope").updateFiltros();
+    $ionicNavBarDelegate.back();
+  }
+
+  this.searchResults = function(searchValue){
+    console.log(searchValue);
+  }
+
+})
+
+.controller('SearchCtrl', function($scope, Vereadores, $rootScope, $ionicHistory, DB, $timeout, Filtros, $state) {
+  var vm = this;
+
+  this.updateFiltros = function(){
+    this.bairro = Filtros.getFilter("bairro");
+    this.vereador = Filtros.getFilter("vereador");
+    this.assunto = Filtros.getFilter("assunto");
+  }
+
+  this.redirect = function(state){
+    Filtros.setFilter("scope", vm);
+    $state.go(state);
+  }
+})
+
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
     { title: 'Reggae', id: 1 },

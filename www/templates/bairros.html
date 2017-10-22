@@ -1,0 +1,16 @@
+<ion-view view-title="Vereadores">
+  <ion-content>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="search" on-change="vm.searchResults(this.value)">
+      </label>
+    </div>
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="item in vm.listaItens" ng-click="vm.select(item)">
+        <h2>{{item.nome}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
