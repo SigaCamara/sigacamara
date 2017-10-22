@@ -4,7 +4,7 @@
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in vm.listaItens" ng-click="vm.select(item)">
         <img ng-src="{{item.url_foto}}">
         <h2>{{item.nome_parlamentar}}</h2>
-        <p>sem conteúdo aqui</p>
+        <p>{{item.biografia}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
