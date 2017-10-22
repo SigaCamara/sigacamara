@@ -56,6 +56,23 @@ angular.module('starter.controllers', [])
   }
 })
 
+.controller('MateriaisCtrl', function($scope, Materiais, $rootScope, $ionicHistory, DB, $timeout, $ionicNavBarDelegate, Filtros) {
+  var vm = this;
+  this.listaItens = [];
+  
+  this.bairro = Filtros.getFilter("bairro");
+  this.vereador = Filtros.getFilter("vereador");
+ 
+  Materiais.all(this.bairro, this.vereador).then(function(data) {
+    vm.listaItens = data;
+    debugger;
+  });
+
+  this.select = function(valor){
+
+  }
+})
+
 .controller('BairroCtrl', function($scope, Bairros, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
   var vm = this;
   this.listaItens = [];
@@ -88,6 +105,10 @@ angular.module('starter.controllers', [])
   this.redirect = function(state){
     Filtros.setFilter("scope", vm);
     $state.go(state);
+  }
+
+  this.pesquisar = function(){
+    $state.go("app.materiais");
   }
 })
 
