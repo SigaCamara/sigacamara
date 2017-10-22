@@ -44,7 +44,7 @@ angular.module('starter.controllers', [])
 .controller('VereadorCtrl', function($scope, Vereadores, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
   var vm = this;
   this.listaItens = [];
-  
+
   Vereadores.all().then(function(data) {
     vm.listaItens = data;
   });
@@ -56,8 +56,6 @@ angular.module('starter.controllers', [])
   }
 })
 
-
-
 .controller('MaterialDetailCtrl', function($scope, $state, Materiais, $rootScope, $ionicHistory, DB, $timeout, $ionicNavBarDelegate, Filtros,  $ionicLoading, $stateParams) {
   var vm = this;
   this.material = Filtros.getFilter("materia");
@@ -66,11 +64,11 @@ angular.module('starter.controllers', [])
 .controller('MateriaisCtrl', function($scope, $state, Materiais, $rootScope, $ionicHistory, DB, $timeout, $ionicNavBarDelegate, Filtros,  $ionicLoading) {
   var vm = this;
   this.listaItens = [];
-  
+
   this.bairro = Filtros.getFilter("bairro");
   this.vereador = Filtros.getFilter("vereador");
   this.assunto = Filtros.getFilter("assunto");
-  
+
   if(!this.bairro && !this.vereador && !this.assunto ){
     $state.go("app.search");
     return;
@@ -95,7 +93,7 @@ angular.module('starter.controllers', [])
 .controller('BairroCtrl', function($scope, Bairros, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
   var vm = this;
   this.listaItens = [];
-  
+
   Bairros.all().then(function(data) {
     vm.listaItens = data;
   });
@@ -130,6 +128,9 @@ angular.module('starter.controllers', [])
     Filtros.setFilter("assunto", vm.assunto);
     $state.go("app.materiais");
   }
+})
+
+.controller('MapCtrl', function($scope) {
 })
 
 .controller('PlaylistsCtrl', function($scope) {
