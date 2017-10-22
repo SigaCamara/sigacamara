@@ -1,5 +1,5 @@
 moduleServices.factory('Materiais', function($http, $q, DB, Util, URL) {
-  
+
     return {
       all: function(bairro, vereador, assunto) {
 
@@ -9,7 +9,7 @@ moduleServices.factory('Materiais', function($http, $q, DB, Util, URL) {
 
         if(vereador){
           id_vereador = vereador.id;
-          queryParameteres.push("vereador=" + id_vereador);
+          queryParameteres.push("parlamentar=" + id_vereador);
         }
 
         if(bairro){
@@ -18,14 +18,14 @@ moduleServices.factory('Materiais', function($http, $q, DB, Util, URL) {
         }
 
         if(assunto){
-          pattern_assunto = assunto;  
+          pattern_assunto = assunto;
           queryParameteres.push("assunto=" + pattern_assunto) ;
         }
 
         var promise = $http.get(URL.endpoint("materias/consulta_materia_bairro", "?" + queryParameteres.join("&"))).then(function (response) {
           return response.data;
         });
-        
+
         return promise;
       }
     };
