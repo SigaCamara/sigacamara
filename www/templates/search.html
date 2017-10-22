@@ -10,8 +10,12 @@
         Vereadores <span ng-show="vm.vereador.id">({{vm.vereador.nome_parlamentar}})</span>
       </li>
       <li class="item" ng-click="vm.redirect('app.assuntos')">
-        Assuntos <span ng-show="vm.assunto.id">({{vm.assunto.descricao}})</span> 
+          <input type="text" ng-model="assunto" placeholder="Assunto" />
       </li>
+
+      <button class="button button-full button-positive">
+          Pesquisar
+      </button>
     </ul>
   </ion-content>
 </ion-view>
