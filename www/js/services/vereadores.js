@@ -4,7 +4,7 @@ moduleServices.factory('Vereadores', function($http, $q, DB, Util, URL, MockHelp
     all: function() {
       // return promise with vereadores data
       var promise = $http.get(URL.endpoint("parlamentares")).then(function (response) {
-
+        
         var myFollowedVereadores = DB.load("vereador_follow");
 
         // flag nos vereadores que estou seguindo
@@ -17,7 +17,9 @@ moduleServices.factory('Vereadores', function($http, $q, DB, Util, URL, MockHelp
         }
 
         return response.data;
-      });
+      },(function(){
+        promise.reject();
+      }));
 
       // Return the promise to the controller
       return promise;

@@ -1,4 +1,5 @@
-moduleServices.factory('Filtros', function() {
+
+moduleServices.factory('Filtros', function(HtmlHelper) {
   
   var filtros = {
     "bairro" : "",
@@ -7,6 +8,23 @@ moduleServices.factory('Filtros', function() {
   };
 
   return {
+    getFilterDescription: function(){
+      description = " Pesquisando registros ";
+
+      if (filtros.vereador !== ""){
+        description += " de " + HtmlHelper.strongTag(filtros.vereador.nome_parlamentar);
+      }
+
+      if (filtros.bairro !== ""){
+        description += " no bairro " + HtmlHelper.strongTag(filtros.bairro.nome);
+      }
+            
+      if (filtros.assunto !== ""){
+        description += " onde tenha o assunto '"+ HtmlHelper.strongTag(filtros.assunto) +"'" ;
+      }
+
+      return description;
+    },
     getFilter: function(name) {
       return filtros[name]
     },

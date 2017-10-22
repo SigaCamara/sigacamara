@@ -22,6 +22,10 @@ moduleServices.factory('URL', function($http, $q, DB, Util) {
   
   return {
     endpoint: function(service, queryParams) {
+      if(!queryParams){
+        queryParams = "";
+      }
+      
       var endpointPath = getServerPath() + service + ".json" + queryParams;
       return endpointPath;
     }

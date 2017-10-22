@@ -1,0 +1,53 @@
+<ion-view view-title="Detalhes Material">
+  <ion-content>
+    <div class="list list-inset">
+        <div class="item">
+            <strong>Tipo:</strong> {{vm.material.tipo.data.descricao}}
+        </div>
+        <div class="item">
+          <strong>Ano:</strong> {{vm.material.ano}}
+        </div>
+        <div class="item">
+          <strong>Número:</strong> {{vm.material.numero}}
+        </div>
+        <div class="item">
+          <strong>Ementa:</strong> {{vm.material.ementa}}
+        </div>
+        <div class="item">
+            <strong>Indexacao:</strong> {{vm.material.indexacao}}
+        </div>
+        <button class="button button-block button-positive">
+            Seguir Material
+         </button>
+    </div>
+
+ 
+    <div class="padding">  
+      <h4>Vereadores Envolvidos</h4>
+    </div>
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in vm.material.autores_parlamentares">
+        <img ng-src="{{item.url_foto}}">
+        <h2>{{item.nome_parlamentar}}</h2>
+        <p>Partido atual: {{item.partido_atual}}</p>
+      </ion-item>
+    </ion-list>
+
+
+    <div class="padding">  
+      <h4>Timeline de Tramitações</h4>
+    </div>
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right">
+         10/10/2017 - alteração da tramitação - por João Carlos
+      </ion-item>
+
+      <ion-item class="item-remove-animate item-icon-right">
+          05/10/2017 - inclusão da tramitação - por João Carlos
+       </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

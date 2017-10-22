@@ -1,11 +1,16 @@
 <ion-view view-title="Materiais">
   <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-icon-right" ng-repeat="item in vm.listaItens" ng-click="vm.select(item)">
-        <h2>{{item.tipo.data.descricao}}</h2>
-        <p>{{item.ementa}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-    </ion-list>
+    <div class="padding"  ng-bind-html="vm.filterDescription"></div>
+      <ion-list>
+        <ion-item class="item-remove-animate item-icon-right" ng-repeat="item in vm.listaItens" ng-click="vm.select(item)">
+          <h2>{{item.tipo.data.descricao}}</h2>
+          <p>{{item.ementa}}</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+      </ion-list>
+
+      <div class="row padding" ng-show="vm.loading">
+        <ion-spinner></ion-spinner> <span>Buscando registros...</span>
+      </div>
   </ion-content>
 </ion-view>
