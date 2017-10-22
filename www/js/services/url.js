@@ -1,6 +1,6 @@
 moduleServices.factory('URL', function($http, $q, DB, Util) {
 
-  var mocking = true;
+  var mocking = false;
 
   var config = {
     server: "http://10.1.96.202",

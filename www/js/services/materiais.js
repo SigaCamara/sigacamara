@@ -2,7 +2,7 @@ moduleServices.factory('Materiais', function($http, $q, DB, Util, URL) {
 
     return {
       tramitacoes: function(materia){
-        materia.id = "322193";
+        //  materia.id = "322193"; // mock
         var promise = $http.get(URL.endpoint("tramitacoes/" + materia.id)).then(function (response) {
           return response.data;
         });

@@ -68,6 +68,14 @@ angular.module('starter.controllers', [])
 .controller('VereadorDetailCtrl', function($scope, Vereadores, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
   var vm = this;
   this.vereador = Filtros.getFilter("vereador");
+
+  Vereadores.rankBairro(this.vereador).then(function(data){
+    vm.rankBairro = data;
+  });
+
+  Vereadores.rankeTipoMateria(this.vereador).then(function(data){
+    vm.rankeTipoMateria = data;
+  });
 })
 
 .controller('MaterialDetailCtrl', function($scope, $state, Materiais, $rootScope, $ionicHistory, DB, $timeout, $ionicNavBarDelegate, Filtros,  $ionicLoading, $stateParams) {
