@@ -148,7 +148,67 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('MapCtrl', function($scope) {
+.controller('MapCtrl', function($scope, Maps) {
+  Maps.mapa_calor().then(function(data) {
+
+    // var data = [{
+    //   "latitude": "41.000400",
+    //   "longitude": "-74.102500",
+    //   "weight": 1,
+    //   "zip": "07423-1307"
+    // }];
+
+
+    var styles = [{
+      "featureType": "road",
+      "elementType": "geometry",
+      "stylers": [{
+        "lightness": 100
+      }, {
+        "visibility": "on"
+      }]
+    }, {
+      "featureType": "road",
+      "elementType": "labels",
+      "stylers": [{
+        "visibility": "off"
+      }]
+    }, {
+      "featureType": "poi",
+      "elementType": "labels",
+      "stylers": [{
+        "visibility": "off"
+      }]
+    }];
+
+    $.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization,geometry&key=AIzaSyDiSbeJ5PvIWg9kcBrXbx622gMl-mlZ5-o")
+      .done(function(script, textStatus) {
+        var myLatlng = new google.maps.LatLng(-22.909883022, -47.062581047);
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"), {
+          zoom: 8,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          styles: styles
+        });
+
+        $.each(data, function(i, e) {
+          e.location = new google.maps.LatLng(e.latitude, e.longitude);
+          console.log(e);
+        });
+
+        var heatmap = new google.maps.visualization.HeatmapLayer({
+          data: data
+        });
+
+        heatmap.set('radius', heatmap.get('radius') ? null : 50);
+
+        heatmap.setMap(map);
+        // console.log(data);
+      });
+
+      return data;
+    });
 })
 
 .controller('PlaylistsCtrl', function($scope) {

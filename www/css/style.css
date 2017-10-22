@@ -298,6 +298,13 @@ Main components
 #map {
   height: 100%;
 }
+
+#map-canvas {
+  height: 800px;
+  width: 800px;
+  border: 2px solid #606060;
+}
+
 /* Optional: Makes the sample page fill the window. */
 padding: 0;
 html, body {
