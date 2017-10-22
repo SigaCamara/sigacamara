@@ -68,6 +68,23 @@ angular.module('starter.controllers', [])
 .controller('VereadorDetailCtrl', function($scope, Vereadores, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
   var vm = this;
   this.vereador = Filtros.getFilter("vereador");
+
+  Vereadores.rankBairro(this.vereador).then(function(data){
+    vm.rankBairro = data;
+  });
+
+  Vereadores.rankeTipoMateria(this.vereador).then(function(data){
+    vm.rankeTipoMateria = data;
+  });
+})
+
+
+.controller('BairroDetailCtrl', function($scope, Bairros, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
+  var vm = this;
+  this.bairro = Filtros.getFilter("bairro_item");
+  Bairros.rank(this.bairro).then(function(data){
+    vm.rank = data;
+  });
 })
 
 .controller('MaterialDetailCtrl', function($scope, $state, Materiais, $rootScope, $ionicHistory, DB, $timeout, $ionicNavBarDelegate, Filtros,  $ionicLoading, $stateParams) {
@@ -82,7 +99,7 @@ angular.module('starter.controllers', [])
   var vm = this;
   this.listaItens = [];
 
-  this.bairro = Filtros.getFilter("bairro");
+  this.bairro = Filtros.getFilter("bairro_item");
   this.vereador = Filtros.getFilter("vereador");
   this.assunto = Filtros.getFilter("assunto");
 
@@ -107,7 +124,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('BairroCtrl', function($scope, Bairros, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
+.controller('BairroCtrl', function($scope, $state, Bairros, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
   var vm = this;
   this.listaItens = [];
 
@@ -116,9 +133,13 @@ angular.module('starter.controllers', [])
   });
 
   this.select = function(valor){
-    Filtros.setFilter("bairro", valor);
-    Filtros.getFilter("scope").updateFiltros();
-    $ionicNavBarDelegate.back();
+    Filtros.setFilter("bairro_item", valor);
+    if(Filtros.getFilter("ver-detalhes") === true){
+      $state.go("app.bairro");
+    }else {
+      Filtros.getFilter("scope").updateFiltros();
+      $ionicNavBarDelegate.back();
+    }
   }
 
   this.searchResults = function(searchValue){
@@ -131,7 +152,7 @@ angular.module('starter.controllers', [])
   var vm = this;
 
   this.updateFiltros = function(){
-    vm.bairro = Filtros.getFilter("bairro");
+    vm.bairro = Filtros.getFilter("bairro_item");
     vm.vereador = Filtros.getFilter("vereador");
     vm.assunto = Filtros.getFilter("assunto");
   }

@@ -63,7 +63,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-
+  .state('app.bairro', {
+    url: '/bairro',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/bairro.html',
+        controller: 'BairroDetailCtrl',
+        controllerAs: 'vm'
+      }
+    }
+  })
   .state('app.vereadores', {
     url: '/vereadores',
     views: {

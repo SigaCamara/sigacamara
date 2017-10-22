@@ -3,6 +3,7 @@ moduleServices.factory('Filtros', function(HtmlHelper) {
   
   var filtros = {
     "bairro" : "",
+    "bairro_item" : "",
     "vereador" : "",
     "assunto" : ""
   };
@@ -17,6 +18,10 @@ moduleServices.factory('Filtros', function(HtmlHelper) {
 
       if (filtros.bairro !== ""){
         description += " no bairro " + HtmlHelper.strongTag(filtros.bairro.nome);
+      }
+
+      if (filtros.bairro_item !== ""){
+        description += " no bairro " + HtmlHelper.strongTag(filtros.bairro_item.nome);
       }
             
       if (filtros.assunto !== ""){

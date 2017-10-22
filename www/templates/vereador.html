@@ -1,12 +1,57 @@
 <ion-view view-title="{{vm.vereador.nome_parlamentar}}">
     <ion-content>
       <div class="list list-inset">
-          <img src="{{vm.vereador.url_foto}}" max-width="10">
-  
-          <div class="item">
-              <strong>Partido Atual:</strong> {{vm.vereador.partido_atual}}
+        <img src="{{vm.vereador.url_foto}}" max-width="10">
+
+        <div class="item">
+            <strong>Partido Atual:</strong> {{vm.vereador.partido_atual}}
+        </div>
+        
+          <div class="card">
+            <div class="item item-divider">
+                Tópicos por Materia:
+            </div>
+            <div class="item item-text-wrap">
+              <div ng-hide="vm.rankeTipoMateria">
+                  Consultando materias por tipo
+              </div>
+              <ul ng-show="vm.rankeTipoMateria">
+                  <li ng-repeat="item in vm.rankeTipoMateria track by $index" ng-if="item.qtd>0 && ( $index < 3 || vm.showTipoAll === true)">
+                    <strong>{{item.tipo_materia}}</strong>: {{item.qtd}} 
+                    <ng-pluralize count="item.qtd" when="{ 'one': 'materia',  'other': 'materias'}"></ng-pluralize>
+                  </li>
+                  <hr />
+                  <button ng-click="vm.showTipoAll=!vm.showTipoAll">
+                    <span ng-hide="vm.showTipoAll">ver mais</span>
+                    <span ng-show="vm.showTipoAll">ver menos</span>
+                  </button>
+              </ul>
+            </div>
           </div>
-  
+          
+          <div class="card">
+            <div class="item item-divider">
+                Materias por Bairro:
+            </div>
+            <div class="item item-text-wrap">
+                <div ng-hide="vm.rankBairro">
+                    Consultando bairros com atuação
+                  </div>
+                  <ul ng-show="vm.rankBairro">
+                      <li ng-repeat="item in vm.rankBairro track by $index" ng-if="item.qtd>0 && ( $index < 3 || vm.showAll === true)">
+                        <strong>{{item.bairro}}</strong>: {{item.qtd}} 
+                        <ng-pluralize count="item.qtd" when="{ 'one': 'materia',  'other': 'materias'}"></ng-pluralize>
+                      </li>
+                      <br />
+                      <button ng-click="vm.showAll=!vm.showAll">
+                          <span ng-hide="vm.showAll">ver mais</span>
+                          <span ng-show="vm.showAll">ver menos</span>
+                      </button>
+                  </ul>
+            </div>
+          </div>
+         
+
           <div class="padding">
             <strong>Biografia:</strong> {{vm.vereador.biografia}}
           </div>

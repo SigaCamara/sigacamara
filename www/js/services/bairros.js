@@ -1,6 +1,18 @@
 moduleServices.factory('Bairros', function($http, $q, DB, Util, URL) {
-
+  
     return {
+      rank: function(bairro){
+        id_bairro = bairro.id;
+        
+        // return promise with vereadores data
+        var promise = $http.get(URL.endpoint("bairros/rank_parlamentar_bairro", "?bairro=" + id_bairro)).then(function (response) {
+          return response.data;
+        },(function(){
+          promise.reject();
+        }));
+  
+        return promise;
+      },
       all: function() {
         // return promise with bairros data
         var promise = $http.get(URL.endpoint("bairros")).then(function (response) {

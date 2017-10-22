@@ -1,6 +1,32 @@
 moduleServices.factory('Vereadores', function($http, $q, DB, Util, URL, MockHelper) {
 
   return {
+    rankeTipoMateria : function(vereador){
+     
+      id_parlamentar = vereador.id;
+      
+      // return promise with vereadores data
+      var promise = $http.get(URL.endpoint("materias/rank_tipo_materia_parlamentar", "?parlamentar=" + id_parlamentar)).then(function (response) {
+        return response.data;
+      },(function(){
+        promise.reject();
+      }));
+
+      return promise;
+    },
+    rankBairro: function(vereador){
+
+      id_parlamentar = vereador.id;
+
+      // return promise with vereadores data
+      var promise = $http.get(URL.endpoint("bairros/rank_bairro_parlamentar", "?parlamentar=" + id_parlamentar)).then(function (response) {
+        return response.data;
+      },(function(){
+        promise.reject();
+      }));
+
+      return promise;
+    },
     all: function() {
       // return promise with vereadores data
       var promise = $http.get(URL.endpoint("parlamentares")).then(function (response) {

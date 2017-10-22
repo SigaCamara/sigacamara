@@ -1,0 +1,21 @@
+<ion-view view-title="{{vm.bairro.nome}}">
+  <ion-content>
+      <div class="card">
+          <div class="item item-divider">
+              Materias por Vereador:
+          </div>
+          <div class="item item-text-wrap">
+              <div ng-hide="vm.rank">
+                  Consultando bairros com atuação
+                </div>
+                <ul ng-show="vm.rank">
+                    <li ng-repeat="item in vm.rank track by $index" ng-if="item.qtd>0">
+                      <strong>{{item.parlamentar.nome_parlamentar}} ({{item.parlamentar.partido_atual}})</strong>: {{item.qtd}} 
+                      <ng-pluralize count="item.qtd" when="{ 'one': 'materia',  'other': 'materias'}"></ng-pluralize>
+                    </li>
+                </ul>
+          </div>
+        </div>
+       
+  </ion-content>
+</ion-view>
