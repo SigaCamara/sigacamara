@@ -78,6 +78,15 @@ angular.module('starter.controllers', [])
   });
 })
 
+
+.controller('BairroDetailCtrl', function($scope, Bairros, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
+  var vm = this;
+  this.bairro = Filtros.getFilter("bairro_item");
+  Bairros.rank(this.bairro).then(function(data){
+    vm.rank = data;
+  });
+})
+
 .controller('MaterialDetailCtrl', function($scope, $state, Materiais, $rootScope, $ionicHistory, DB, $timeout, $ionicNavBarDelegate, Filtros,  $ionicLoading, $stateParams) {
   var vm = this;
   this.material = Filtros.getFilter("materia");
@@ -115,7 +124,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('BairroCtrl', function($scope, Bairros, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
+.controller('BairroCtrl', function($scope, $state, Bairros, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
   var vm = this;
   this.listaItens = [];
 
@@ -124,9 +133,13 @@ angular.module('starter.controllers', [])
   });
 
   this.select = function(valor){
-    Filtros.setFilter("bairro", valor);
-    Filtros.getFilter("scope").updateFiltros();
-    $ionicNavBarDelegate.back();
+    Filtros.setFilter("bairro_item", valor);
+    if(Filtros.getFilter("ver-detalhes") === true){
+      $state.go("app.bairro");
+    }else {
+      Filtros.getFilter("scope").updateFiltros();
+      $ionicNavBarDelegate.back();
+    }
   }
 
   this.searchResults = function(searchValue){

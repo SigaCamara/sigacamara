@@ -30,7 +30,7 @@ moduleServices.factory('Materiais', function($http, $q, DB, Util, URL) {
           queryParameteres.push("assunto=" + pattern_assunto) ;
         }
 
-        var promise = $http.get(URL.endpoint("materias/consulta_materia_bairro", "?" + queryParameteres.join("&"))).then(function (response) {
+        var promise = $http.get(URL.endpoint("materias/consulta_materia", "?" + queryParameteres.join("&"))).then(function (response) {
           return response.data;
         });
 
