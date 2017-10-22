@@ -75,6 +75,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  .state('app.vereador', {
+    url: '/vereador',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/vereador.html',
+        controller: 'VereadorDetailCtrl',
+        controllerAs: 'vm'
+      }
+    }
+  })
   
   .state('app.search', {
     url: '/search',

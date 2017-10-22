@@ -1,59 +1,66 @@
 <ion-view view-title="Detalhes Materia">
-  <ion-content>
-    <div class="list list-inset">
-        <div class="item">
-            <strong>Tipo:</strong> {{vm.material.tipo.data.descricao}}
-        </div>
-        <div class="item">
-          <strong>Ano:</strong> {{vm.material.ano}}
-        </div>
-        <div class="item">
-          <strong>Número:</strong> {{vm.material.numero}}
-        </div>
-        <div class="item">
-            <strong>Em tramitação:</strong> {{vm.material.ind_tramitacao === 1 ? "Sim" : "Não"}}
-        </div>
-        <div class="item">
-            <strong>Regime de tramitação:</strong> {{vm.material.regime_tramitacao}}
+    <ion-content>
+      <div class="list list-inset">
+          <div class="item">
+              <strong>Tipo:</strong> {{vm.material.tipo.data.descricao}}
           </div>
-        <div class="item">
-          <strong>Ementa:</strong> {{vm.material.ementa}}
-        </div>
-        <div class="item">
-            <strong>Indexacao:</strong> {{vm.material.indexacao}}
-        </div>
-        <button class="button button-block button-positive">
-            Seguir Materia
-         </button>
-    </div>
-
- 
-    <div class="padding">  
-      <h4>Vereadores Envolvidos</h4>
-    </div>
-
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in vm.material.autores_parlamentares">
-        <img ng-src="{{item.url_foto}}">
-        <h2>{{item.nome_parlamentar}}</h2>
-        <p>Partido atual: {{item.partido_atual}}</p>
-      </ion-item>
-    </ion-list>
-
-
-    <div class="padding">  
-      <h4>Timeline de Tramitações</h4>
-    </div>
-
-    <ion-list>
-      <ion-item class="item-remove-animate item-icon-right">
-         10/10/2017 - alteração da tramitação - por João Carlos
-      </ion-item>
-
-      <ion-item class="item-remove-animate item-icon-right">
-          05/10/2017 - inclusão da tramitação - por João Carlos
-       </ion-item>
-    </ion-list>
-
-  </ion-content>
-</ion-view>
+          <div class="item">
+            <strong>Ano:</strong> {{vm.material.ano}}
+          </div>
+          <div class="item">
+            <strong>Número:</strong> {{vm.material.numero}}
+          </div>
+          <div class="item">
+              <strong>Em tramitação:</strong> {{vm.material.ind_tramitacao === 1 ? "Sim" : "Não"}}
+          </div>
+          <div class="item">
+              <strong>Regime de tramitação:</strong> {{vm.material.regime_tramitacao}}
+            </div>
+          <div class="padding">
+            <strong>Ementa:</strong> {{vm.material.ementa}}
+          </div>
+          <div class="padding">
+              <strong>Indexacao:</strong> {{vm.material.indexacao}}
+          </div>
+          <button class="button button-block button-positive"  ng-click="login()">
+              Seguir Materia
+           </button>
+      </div>
+  
+   
+      <div class="padding">  
+        <h4>Vereadores Envolvidos</h4>
+      </div>
+  
+      <ion-list>
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in vm.material.autores_parlamentares">
+          <img ng-src="{{item.url_foto}}">
+          <h2>{{item.nome_parlamentar}}</h2>
+          <p>Partido atual: {{item.partido_atual}}</p>
+        </ion-item>
+      </ion-list>
+  
+  
+      <div class="padding">  
+        <h4>Timeline de Tramitações</h4>
+      </div>
+  
+      <section id="cd-timeline" class="cd-container">
+          <div ng-repeat="activity in vm.tramitacoes">
+            <div class="cd-timeline-block">
+              <div class="cd-timeline-icon royal">
+                <i class="ion-android-textsms timelineIcon"></i>
+              </div>
+              <!-- cd-timeline-img -->
+              <div class="cd-timeline-content royal">
+                <h5 class="marginBottom0 marginTop0">{{activity.origem}} para {{activity.destino}} ({{activity.status_tramitacao}})</h5>
+                <p class="marginTop5 cd-author">{{activity.dat_tramitacao | date: "d/m/Y"}}</p>
+                <p class="timelineText">{{activity.txt_tramitacao}}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+  
+    </ion-content>
+  </ion-view>
+  

@@ -1,0 +1,20 @@
+<ion-view view-title="{{vm.vereador.nome_parlamentar}}">
+    <ion-content>
+      <div class="list list-inset">
+          <img src="{{vm.vereador.url_foto}}" max-width="10">
+  
+          <div class="item">
+              <strong>Partido Atual:</strong> {{vm.vereador.partido_atual}}
+          </div>
+  
+          <div class="padding">
+            <strong>Biografia:</strong> {{vm.vereador.biografia}}
+          </div>
+  
+          <button class="button button-block button-positive"  ng-click="login()">
+              Seguir Vereador
+           </button>
+      </div>
+    </ion-content>
+  </ion-view>
+  

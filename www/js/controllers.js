@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, Filtros) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -29,6 +29,10 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+  $scope.prepararConsultarDados = function(){
+    Filtros.setFilter("ver-detalhes", true);
+  }
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
@@ -41,7 +45,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('VereadorCtrl', function($scope, Vereadores, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
+.controller('VereadorCtrl', function($scope, $state, Vereadores, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
   var vm = this;
   this.listaItens = [];
   
@@ -51,16 +55,27 @@ angular.module('starter.controllers', [])
 
   this.select = function(valor){
     Filtros.setFilter("vereador", valor);
-    Filtros.getFilter("scope"). updateFiltros();
-    $ionicNavBarDelegate.back();
+    if(Filtros.getFilter("ver-detalhes") === true){
+      $state.go("app.vereador");
+    }else {
+      Filtros.getFilter("scope").updateFiltros();
+      $ionicNavBarDelegate.back();
+    }
   }
 })
 
 
+.controller('VereadorDetailCtrl', function($scope, Vereadores, $rootScope, $ionicHistory, DB, $timeout, Filtros, $ionicNavBarDelegate) {
+  var vm = this;
+  this.vereador = Filtros.getFilter("vereador");
+})
 
 .controller('MaterialDetailCtrl', function($scope, $state, Materiais, $rootScope, $ionicHistory, DB, $timeout, $ionicNavBarDelegate, Filtros,  $ionicLoading, $stateParams) {
   var vm = this;
   this.material = Filtros.getFilter("materia");
+  Materiais.tramitacoes(this.material).then(function(data){
+    vm.tramitacoes = data;
+  });
 })
 
 .controller('MateriaisCtrl', function($scope, $state, Materiais, $rootScope, $ionicHistory, DB, $timeout, $ionicNavBarDelegate, Filtros,  $ionicLoading) {
@@ -123,6 +138,7 @@ angular.module('starter.controllers', [])
 
   this.redirect = function(state){
     Filtros.setFilter("scope", vm);
+    Filtros.setFilter("ver-detalhes", false);
     $state.go(state);
   }
 
