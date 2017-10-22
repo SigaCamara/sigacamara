@@ -10,12 +10,15 @@
                 </div>
                 <ul ng-show="vm.rank">
                     <li ng-repeat="item in vm.rank track by $index" ng-if="item.qtd>0">
-                      <strong>{{item.parlamentar.nome_parlamentar}} ({{item.parlamentar.partido_atual}})</strong>: {{item.qtd}} 
+                      <strong>{{item.parlamentar.nome_parlamentar}} ({{item.parlamentar.partido_atual}})</strong>: {{item.qtd}}
                       <ng-pluralize count="item.qtd" when="{ 'one': 'materia',  'other': 'materias'}"></ng-pluralize>
                     </li>
                 </ul>
           </div>
         </div>
-       
+        <button class="button button-block button-positive"  ng-click="login()">
+            Seguir Bairro
+         </button>
+
   </ion-content>
 </ion-view>
