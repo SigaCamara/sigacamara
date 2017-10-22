@@ -1,6 +1,6 @@
 moduleServices.factory('URL', function($http, $q, DB, Util) {
 
-  var mocking = true;
+  var mocking = false;
 
   var config = {
     server: "http://10.1.96.202",
@@ -21,8 +21,8 @@ moduleServices.factory('URL', function($http, $q, DB, Util) {
   }
   
   return {
-    endpoint: function(service) {
-      var endpointPath = getServerPath() + service + ".json";
+    endpoint: function(service, queryParams) {
+      var endpointPath = getServerPath() + service + ".json" + queryParams;
       return endpointPath;
     }
   };
