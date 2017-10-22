@@ -62,10 +62,10 @@ angular.module('starter.controllers', [])
   
   this.bairro = Filtros.getFilter("bairro");
   this.vereador = Filtros.getFilter("vereador");
- 
-  Materiais.all(this.bairro, this.vereador).then(function(data) {
+  this.assunto = Filtros.getFilter("assunto");
+  
+  Materiais.all(this.bairro, this.vereador, this.assunto).then(function(data) {
     vm.listaItens = data;
-    debugger;
   });
 
   this.select = function(valor){
@@ -97,9 +97,9 @@ angular.module('starter.controllers', [])
   var vm = this;
 
   this.updateFiltros = function(){
-    this.bairro = Filtros.getFilter("bairro");
-    this.vereador = Filtros.getFilter("vereador");
-    this.assunto = Filtros.getFilter("assunto");
+    vm.bairro = Filtros.getFilter("bairro");
+    vm.vereador = Filtros.getFilter("vereador");
+    vm.assunto = Filtros.getFilter("assunto");
   }
 
   this.redirect = function(state){
@@ -108,6 +108,8 @@ angular.module('starter.controllers', [])
   }
 
   this.pesquisar = function(){
+    debugger;
+    Filtros.setFilter("assunto", vm.assunto);
     $state.go("app.materiais");
   }
 })
