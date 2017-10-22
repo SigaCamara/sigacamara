@@ -31,7 +31,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-  
+
   .state('app.materiais', {
     url: '/materiais',
     views: {
@@ -52,7 +52,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-  
+
   .state('app.bairros', {
     url: '/bairros',
     views: {
@@ -63,7 +63,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-
 
   .state('app.vereadores', {
     url: '/vereadores',
@@ -85,7 +84,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+
+  .state('app.map', {
+    url: '/map',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/map.html',
+        controller: 'MapCtrl',
+        controllerAs: 'vm'
+      }
+    }
+  })
   
+
   .state('app.search', {
     url: '/search',
     views: {
@@ -130,4 +141,3 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 
 moduleServices = angular.module('starter.services', []);
-
